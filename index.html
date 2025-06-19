@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Malluri Raghavendra | Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #0e1117;
+      color: #f0f0f0;
+      scroll-behavior: smooth;
+      text-align: center;
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to right, #141e30, #243b55);
+      animation: slideInFromTop 1.2s ease;
+    }
+
+    .hero-text h1 {
+      font-size: 2.5rem;
+      color: #00d9ff;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      margin: 1rem 0;
+      animation: fadeIn 2.5s ease forwards;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      background: #00d9ff;
+      color: #000;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 0.3s ease;
+      animation: pulse 2s infinite;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: #00aaff;
+      color: #000;
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: #00d9ff;
+      border: 2px solid #00d9ff;
+      animation: fadeIn 2s ease;
+    }
+
+    .btn.secondary:hover {
+      background: #00d9ff;
+      color: #000;
+    }
+
+    .profile-pic {
+      margin-bottom: 20px;
+      animation: bounceIn 2s ease;
+    }
+
+    .profile-pic img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #00d9ff;
+      box-shadow: 0 0 15px rgba(0, 217, 255, 0.5);
+    }
+
+    .navbar {
+      background: #111;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      animation: slideInFromTop 1s ease;
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .navbar a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      background: #00d9ff;
+      left: 0;
+      bottom: -4px;
+      transition: 0.4s;
+    }
+
+    .navbar a:hover {
+      color: #00d9ff;
+    }
+
+    .navbar a:hover::after {
+      width: 100%;
+    }
+
+    section {
+      padding: 50px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #00d9ff;
+      animation: fadeInLeft 1s ease;
+    }
+
+    /* --- Updated About Section --- */
+    .about-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeUp 1s ease-in-out;
+    }
+
+    .about-card {
+      background: rgba(28, 31, 38, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 217, 255, 0.2);
+      border-radius: 15px;
+      padding: 30px;
+      max-width: 800px;
+      box-shadow: 0 8px 20px rgba(0, 217, 255, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .about-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 217, 255, 0.2);
+    }
+
+    .about-card p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #e0e0e0;
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    .about-highlight {
+      font-size: 1.2rem;
+      color: #00d9ff;
+      font-weight: bold;
+    }
+
+    /* --- Other Layout Styles --- */
+    .project-grid, .cert-grid, .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      animation: fadeUp 1.2s ease;
+    }
+
+    .project-card, .cert-card, .edu-card {
+      background: #1c1f26;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 217, 255, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: left;
+    }
+
+    .project-card:hover, .cert-card:hover, .edu-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px rgba(0, 217, 255, 0.4);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+      animation: fadeUp 1s ease-in-out;
+    }
+
+    .skill-card {
+      background: linear-gradient(145deg, #1a1d24, #232933);
+      color: #00d9ff;
+      padding: 15px 10px;
+      border: 1.5px solid rgba(0, 217, 255, 0.4);
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 8px rgba(0, 217, 255, 0.2);
+      cursor: pointer;
+    }
+
+    .skill-card:hover {
+      background: #00d9ff;
+      color: #000;
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 217, 255, 0.6);
+    }
+
+    .cert-card a {
+      color: #f0f0f0;
+      text-decoration: none;
+      transition: color 0.3s;
+      display: inline-block;
+    }
+
+    .cert-card a:hover {
+      color: #00d9ff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #111;
+      color: #aaa;
+      margin-top: 30px;
+    }
+
+    @keyframes fadeIn { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeUp { 0% { opacity: 0; transform: translateY(40px); } 100% { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInLeft { 0% { opacity: 0; transform: translateX(-30px); } 100% { opacity: 1; transform: translateX(0); } }
+    @keyframes slideInFromTop { 0% { transform: translateY(-100px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+    @keyframes bounceIn { 0% { transform: scale(0.5); opacity: 0; } 60% { transform: scale(1.2); opacity: 1; } 80% { transform: scale(0.95); } 100% { transform: scale(1); } }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+    @media (max-width: 768px) {
+      .hero-text h1 { font-size: 1.8rem; }
+      .cert-card, .edu-card, .skill-card { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="profile-pic">
+      <img src="img.jpg" alt="Profile Picture">
+    </div>
+    <div class="hero-text">
+      <h1>Hi, I'm <span>Malluri Raghavendra</span></h1>
+      <p>Aspiring Software Developer | Data Analyst | Tech Enthusiast</p>
+      <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 10px;">
+        <a href="#contact" class="btn">Get in Touch</a>
+        <a href="https://drive.google.com/file/d/1EkgGMdMqXYbW3x3kpEWMeREsnzVqaGlU/view?usp=sharing" target="_blank" class="btn secondary">View Resume</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- About -->
+  <section id="about">
+  <h2>About Me</h2>
+  <div class="about-container">
+    <div class="about-card">
+      <p>
+        <span class="about-highlight">I’m <strong>Malluri Raghavendra</strong>,</span> a Computer Science student at <strong>SR University</strong> passionate about solving real-world problems through technology. I have hands-on experience in <strong>Python</strong>, <strong>JavaScript</strong>, <strong>SQL</strong>, and tools like <strong>Power BI</strong>. <br /><br />
+        I thrive in dynamic environments, love exploring new tech, and believe in the power of clean code and data-driven solutions. I'm always learning, building, and sharing!
+      </p>
+    </div>
+  </div>
+</section>
+
+  <!-- Education -->
+  <section id="education">
+    <h2>Education</h2>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <h3>SR University</h3>
+        <p><strong>Bachelor of Technology in Computer Science</strong></p>
+        <p>CGPA: 8.1 / 10.10</p>
+      </div>
+      <div class="edu-card">
+        <h3>VMR Polytechnic</h3>
+        <p><strong>Diploma in Computer Engineering</strong></p>
+        <p>CGPA: 5.91 / 10.0</p>
+      </div>
+      <div class="edu-card">
+        <h3>NSR High School</h3>
+        <p><strong>SSC</strong></p>
+        <p>CGPA: 9.8 / 10.0</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">HTML</div>
+      <div class="skill-card">CSS</div>
+      <div class="skill-card">JavaScript</div>
+      <div class="skill-card">Python</div>
+      <div class="skill-card">Java</div>
+      <div class="skill-card">C</div>
+      <div class="skill-card">SQL</div>
+      <div class="skill-card">MySQL</div>
+      <div class="skill-card">Power BI</div>
+      <div class="skill-card">MS SQL</div>
+      <div class="skill-card">MS SQL Server Management Studio</div>
+      <div class="skill-card">MS Excel</div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <img src="Color Detection.jpg" alt="Color Detection">
+        <h3>Color Detection using OpenCV</h3>
+        <p>Detects and classifies colors in images using Python and OpenCV (HSV, contour detection).</p>
+        <a href="https://github.com/MalluriRaghavendra/COLOR_DETECTION" target="_blank" class="btn">View</a>
+      </div>
+      <div class="project-card">
+        <img src="Tic-Tac-Toe Game.jpg" alt="Tic Tac Toe">
+        <h3>Tic-Tac-Toe Game</h3>
+        <p>Classic 2-player terminal-based game built with Python, featuring full game logic.</p>
+        <a href="https://github.com/MalluriRaghavendra/TIC_TAC_TOE-" target="_blank" class="btn">View</a>
+      </div>
+      <div class="project-card">
+        <img src="Travel Website.jpg" alt="Travel Website">
+        <h3>Travel Booking Website</h3>
+        <p>Responsive front-end travel platform using HTML, CSS, JavaScript with sleek design.</p>
+        <a href="https://github.com/MalluriRaghavendra/TRAVEL_WEBSITE" target="_blank" class="btn">View</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications">
+    <h2>Certifications</h2>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <h3>AWS Academy Graduate</h3>
+        <a href="https://www.credly.com/go/0JDl3OEX" target="_blank">Cloud Foundations – AWS</a>
+      </div>
+      <div class="cert-card">
+        <h3>Udemy Certificate</h3>
+        <a href="https://www.udemy.com/certificate/UC-fee7cd45-9a83-4b19-8777-89ac35c0064c/" target="_blank">Data Analyst Associate with Power BI</a>
+      </div>
+      <div class="cert-card">
+        <h3>Cisco</h3>
+        <a href="https://drive.google.com/file/d/1sD5SMlZ2dioMio-bMFVZiMrG7ssOr57t/view" target="_blank">Introduction to Networks</a>
+      </div>
+      <div class="cert-card">
+        <h3>Cisco</h3>
+        <a href="https://drive.google.com/file/d/1bJl9oFw35dZgdXYisFYG__wVOBfSdB1r/view" target="_blank">Switching, Routing, and Wireless Essentials</a>
+      </div>
+      <div class="cert-card">
+        <h3>Coursera</h3>
+        <a href="https://coursera.org/verify/H5D2TQKC8CHQ" target="_blank">Foundations of Project Management</a>
+      </div>
+      <div class="cert-card">
+        <h3>Coursera</h3>
+        <a href="https://coursera.org/verify/XDECVS7X6SXH" target="_blank">Introduction to Databases</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" style="background: linear-gradient(to right, #0f2027, #203a43, #2c5364); border-top: 1px solid rgba(0, 217, 255, 0.2); color: #f0f0f0;">
+    <h2 style="color: #00d9ff; margin-bottom: 20px;">Contact Me</h2>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; animation: fadeUp 1s ease-in-out;">
+      <div style="display: flex; align-items: center; gap: 10px; font-size: 1.1rem;">
+        📧 <a href="mailto:malluriraghavendra@gmail.com" style="color: #00d9ff; text-decoration: none; transition: 0.3s;">malluriraghavendra@gmail.com</a>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px; font-size: 1.1rem;">
+        📞 <span style="color: #ffffff;">+91-8886842595</span>
+      </div>
+      <div class="socials" style="margin-top: 10px; display: flex; gap: 20px;">
+        <a href="https://linkedin.com/in/raghavendra-malluri-9432332a4" target="_blank" style="color: #00d9ff; text-decoration: none; transition: 0.3s;">LinkedIn</a>
+        <a href="https://github.com/MalluriRaghavendra" target="_blank" style="color: #00d9ff; text-decoration: none; transition: 0.3s;">GitHub</a>
+        <a href="https://medium.com/@malluriraghavendra" target="_blank" style="color: #00d9ff; text-decoration: none; transition: 0.3s;">Medium</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Malluri Raghavendra. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
